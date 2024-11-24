@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contagem Regressiva para 2090</title>
+    <style>
+        body {
+            font-family: monaco, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            position: fixed;
+            color: white;
+            font-weight: 1;
+            font-size: 17px;
+        }
+        .countdown-container {
+            text-align: center;
+            background: transparent;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="countdown-container">
+        <div id="countdown" class="countdown"></div>
+    </div>
+
+    <script>
+        function updateCountdown() {
+            const targetDate = new Date('January 1, 2090 00:00:00');
+            const currentDate = new Date();
+            const totalSeconds = Math.floor((targetDate - currentDate) / 1000);
+
+            const years = Math.floor(totalSeconds / (365.25 * 24 * 60 * 60));
+            const months = Math.floor((totalSeconds % (365.25 * 24 * 60 * 60)) / (30 * 24 * 60 * 60));
+            const days = Math.floor((totalSeconds % (30 * 24 * 60 * 60)) / (24 * 60 * 60));
+            const hours = Math.floor((totalSeconds % (24 * 60 * 60)) / (60 * 60));
+            const minutes = Math.floor((totalSeconds % (60 * 60)) / 60);
+            const seconds = totalSeconds % 60;
+
+            document.getElementById('countdown').textContent =
+                `${years} anos, ${months} meses, ${days} dias, ${hours} horas, ${minutes} minutos e ${seconds} segundos.`;
+        }
+
+        setInterval(updateCountdown, 1000);
+        updateCountdown(); // Atualiza a contagem imediatamente
+    </script>
+</body>
+</html>

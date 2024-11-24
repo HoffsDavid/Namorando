@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Carrossel de Imagens Automático</title>
+  <style>
+    /* Container do carrossel */
+    .carrossel-container {
+
+      overflow: hidden;
+      position: fixed;
+    }
+
+    /* Container das imagens */
+    .carrossel-imagens {
+      display: flex;
+      transition: transform 1s ease-in-out;
+    }
+
+    /* Imagens do carrossel */
+    .carrossel-imagens img {
+      width: 100%;
+    }
+  </style>
+</head>
+<body>
+  <!-- Carrossel -->
+  <div class="carrossel-container">
+    <div class="carrossel-imagens">
+      <img src="img1.jpeg" alt="Imagem 1">
+      <img src="img2.jpeg" alt="Imagem 2">
+      <img src="img3.jpeg" alt="Imagem 3">
+    </div>
+  </div>
+
+  <script>
+    let index = 0;
+    const imagens = document.querySelector('.carrossel-imagens');
+    const totalImagens = document.querySelectorAll('.carrossel-imagens img').length;
+
+    // Função para mover o carrossel para a próxima imagem
+    function moverCarrossel() {
+      index++;
+      if (index >= totalImagens) {
+        index = 0; // Voltar para a primeira imagem após a última
+      }
+      const deslocamento = -index * 100; // Mover as imagens para a esquerda
+      imagens.style.transform = `translateX(${deslocamento}%)`;
+    }
+
+    // Mover automaticamente a cada 3 segundos
+    setInterval(moverCarrossel, 3000);
+  </script>
+
+</body>
+</html>
